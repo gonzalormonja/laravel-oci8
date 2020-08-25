@@ -132,7 +132,7 @@ class OracleGrammar extends Grammar
             // Once we have the basic foreign key creation statement constructed we can
             // build out the syntax for what should happen on an update or delete of
             // the affected columns, which will get something like "cascade", etc.
-            if (! is_null($foreign->onDelete)) {
+            if (! is_null($foreign->onDelete)  && $foreign->onDelete!="NO ACTION") {
                 $sql .= " on delete {$foreign->onDelete}";
             }
         }
@@ -249,7 +249,7 @@ class OracleGrammar extends Grammar
             // Once we have the basic foreign key creation statement constructed we can
             // build out the syntax for what should happen on an update or delete of
             // the affected columns, which will get something like "cascade", etc.
-            if (! is_null($command->onDelete)) {
+            if (! is_null($command->onDelete) && $command->onDelete!="NO ACTION") {
                 $sql .= " on delete {$command->onDelete}";
             }
 
