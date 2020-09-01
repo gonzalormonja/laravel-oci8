@@ -55,11 +55,11 @@ class OracleAutoIncrementHelper
         $prefix = $this->connection->getTablePrefix();
 
         // create sequence for auto increment
-        $sequenceName = $this->createObjectName($prefix, $table, $col, 'seq');
+        $sequenceName = $this->createObjectName($prefix, $table, $col, 'seqAutoIncrement');
         $this->sequence->create($sequenceName, $start, $column->nocache);
 
         // create trigger for auto increment work around
-        $triggerName = $this->createObjectName($prefix, $table, $col, 'trg');
+        $triggerName = $this->createObjectName($prefix, $table, $col, 'trgAutoIncrement');
         $this->trigger->autoIncrement($prefix . $table, $col, $triggerName, $sequenceName);
     }
 
